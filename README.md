@@ -42,7 +42,5 @@
 
     127.0.0.1 rampagecms 
   
-После чего откройте браузер и перейдите по адресу: 
-
-[http://rampagecms](http://rampagecms)
+После чего откройте браузер и перейдите по адресу: [http://rampagecms](http://rampagecms)
 
