@@ -1,0 +1,309 @@
+/* generic text styles */
+.wpStyled {
+	font-size: 10px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	color: #000000;
+}
+a.wpStyled {
+	font-size: 10px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	color: #000000;
+}
+/* container (border, background color) */
+.wpContainer {
+	border-top: 1px solid #ffffff;
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #D6DFEF;  		
+	border-bottom: 1px solid #D6DFEF;
+	background-color: #EFF3F7; 
+	table-layout:fixed;
+}
+table.wpContainer td, div table.wpContainer td  {
+	padding: 5px;
+	margin: 0px;	
+}
+/* the toolbars */
+.wpToolbar {
+	margin: 0px;
+	padding: 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;  
+	font-size: 10px;			
+}
+
+.wpToolbar *,
+.wpToolbar *::before,
+.wpToolbar *::after {
+	box-sizing: content-box;
+}
+
+table.wpToolbar td, div table.wpToolbar td {
+	margin: 0px;
+	padding: 0px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;  
+	font-size: 10px;	
+}
+/* toolbar buttons */
+.wpDisabled {
+	border-width: 0px; 
+	padding: 0px; 
+	/*filter: mask() mask(color=#AAAAAA);*/
+	/*FILTER: progid:DXImageTransform.Microsoft.MaskFilter() progid:DXImageTransform.Microsoft.MaskFilter(color=#AAAAAA);*/
+	margin: 1px; 
+}
+.wpReady {
+	background-image: url('images/editor/alltoolbar.gif');
+	background-color: transparent;
+	width: 22px;
+	height: 22px;
+	border: #EFF3F7 1px solid;	
+	padding: 0px; 
+	margin: 0px; 
+}
+.wpOver {
+	/*
+	border-right: buttonshadow 1px solid; 
+	border-top: buttonhighlight 1px solid; 
+	border-left: buttonhighlight 1px solid;
+	border-bottom: buttonshadow 1px solid;
+	*/
+	
+	/*
+	border: 1px solid #08246B;
+	background: #B5BED6;
+	
+	padding: 0px; 
+	margin: 0px;
+	*/
+	
+	background-image: url('images/editor/alltoolbar.gif');
+	background-color: #B5BED6;
+	width: 22px;
+	height: 22px;
+	border: 1px solid #08246B;
+	padding: 0px; 
+	margin: 0px; 	
+}
+.wpDown {
+	/*
+	border-right: 1px solid threedhighlight; 
+	border-top: 1px solid threedshadow; 
+	border-left: 1px solid threedshadow; 
+	border-bottom: 1px solid threedhighlight; 
+	*/
+	
+	/*
+	border: 1px solid #08246B;
+	background: #8492B5;
+	
+	padding: 0px; 
+	margin: 0px;
+	*/
+	
+	background-image: url('images/editor/alltoolbar.gif');
+	background-color: #8492B5;
+	width: 22px;
+	height: 22px;
+	border: 1px solid #08246B;
+	padding: 0px; 
+	margin: 0px; 		
+}
+.wpSpacer {
+	background-color: #ADB6CE;
+	border-left: 2px solid #EFF3F7;
+	border-right: 2px solid #EFF3F7;
+	height: 14px;
+}
+.wpLatched {
+	/*
+	border: 1px inset; 
+	padding: 0px; 
+	margin: 0px;
+	*/
+	/*background-color: #f7f7f7*/
+	/*
+	border: 1px solid #08246B;
+	background: #B5BED6;
+	*/
+	
+	background-image: url('images/editor/alltoolbar.gif');
+	background-color: transparent;
+	width: 22px;
+	height: 22px;
+	/*border: #EFF3F7 1px solid;	*/
+	border: 1px inset;
+	border: 1px solid #08246B;
+	padding: 0px; 
+	margin: 0px; 	
+	
+}
+.wpLatchedOver {
+	/*
+	border: 1px inset; 
+	padding: 0px; 
+	margin: 0px;
+	*/
+	/* background-color: threedface */
+	/*
+	border: 1px solid #08246B;
+	background: #8492B5;
+	*/
+	
+	background-image: url('images/editor/alltoolbar.gif');
+	background-color: transparent;
+	width: 22px;
+	height: 22px;
+	/*border: #EFF3F7 1px solid;	*/
+	border: 1px inset;
+	border: 1px solid #08246B;
+	padding: 0px; 
+	margin: 0px;
+}
+
+
+
+/* drop down menus */
+
+.DropDownList {
+	background-color: #ffffff;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	margin-right: 2px;
+	border: 1px solid #D1DCEB;
+	user-select: none;
+}
+
+.DropDownList:hover {
+	border: 1px solid #A9B7CD;
+}
+
+table.DropDownList td {
+	padding: 0px;
+	margin: 1px;
+}
+
+.DropDownList div {		
+	background-color:white; 
+	height:14px; 
+	overflow:hidden; 
+	cursor:default;
+	font-family: verdana;
+	font-size: 11px;
+	color: #000000;
+	padding: 0px;
+	margin: 0px;
+	line-height: normal;
+	font-weight: normal;
+	text-align: left;
+	text-indent: 4px;
+}
+
+.DropDownList img {
+	background-color: threedface;
+}
+
+.frameDropBorder {
+	position: absolute; 
+	display: none;
+	z-index: 100000;
+	border: 1px solid #779cbd75;
+	box-shadow: 4px 4px 6px #94a1c196;
+	border-radius: 8px;
+}
+
+/* the editing areas */
+
+.wpEditFrame {
+	border: 1px solid #ADB6CE;
+	background-color: #FFFFFF;
+	width: 100%;
+}
+
+.wpHtmlEditArea {
+	border: 1px solid #ADB6CE;
+	background-color: #ffffff; 
+	width: 100%;
+	outline: none;
+}
+/* tabs */
+table.wpTabHolder td, div table.wpTabHolder td {
+	padding: 2px;
+	margin: 0;
+}
+.wpTabNoTab {
+	/*border-top: 1px solid #ADB6CE;*/
+}
+
+.wpTButtonUp {
+	font-size: 9px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	color: #000000;
+	border: 1px solid #ADB6CE;
+	/*border-left: 1px solid #ADB6CE;*/
+	/*border-right: 1px solid #ADB6CE;*/
+	background-color:#ffffff;
+	cursor: default;
+	white-space: nowrap;
+}
+
+.wpTButtonMouseDown,
+.wpTButtonDown {
+	font-size: 9px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	color: #000000;
+	border: 1px solid #ADB6CE;
+	background-color: #EFF3F7;
+	cursor: default;
+	white-space: nowrap;
+}
+
+/* message area */
+.wpBorderMessage {
+	cursor: pointer; 
+}
+
+/* context menus */
+.wpContextBorder {
+	border: 1px solid threeddarkshadow; 
+	width:100%;
+	position:absolute;
+	z-index: 40000;
+}
+
+.wpContextTable {
+	border-right: 1px solid threedshadow; 
+	border-bottom: 1px solid threedshadow; 
+	background-color:#F9F8F7; 
+	width:100%; 
+}
+
+table.wpContextTable td, table.wpContextTable tr, table.wpContextTable tr td {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	font-weight: normal;
+}
+
+.wpContextCellOne {
+	background-color:threedface;
+	width: 23px;
+}
+
+.wpContextCellOneOver {
+	background-color:highlight;
+	width: 23px;
+}
+
+.wpContextCellTwo {
+	font-size: 11px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	color: #000000; 
+	cursor:default;
+}
+
+.wpContextCellTwoOver {
+	font-size: 11px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	color: highlighttext; 
+	cursor:default;
+	background-color: highlight;
+}

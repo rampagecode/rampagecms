@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+docker-data
+vendor
+composer.lock
+conf/db.ini
+.idea
+log.txt
+conf/cache.global.php
+conf/cache.tree.php
+conf/debug_on
+conf/site_is_offline

@@ -1,0 +1,106 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0px;
+    font-family: monospace;
+    color: rgb(66 88 109);
+    background: #aaa;
+    font-size: 11pt;
+
+    background-image: url(/assets/admin/images/rampage_cms.png);
+    background-position: top center;
+    background-size: 210px;
+    background-repeat: no-repeat;
+}
+
+fieldset {
+    padding: 8px;
+    margin: 8px;
+    border: 1px solid #197e1b;
+    margin-top: 24px;
+}
+
+legend {
+    background: rgb(241, 255, 3);
+    padding: 2px 8px;
+}
+
+form {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+input[type=text],
+input[type=password] {
+    border: none;
+    background: #195f7e;
+    line-height: 16px;
+    text-indent: 4px;
+    outline: none;
+    font-size: 9pt;
+    color: rgb(209, 222, 0);
+    margin: 0;
+    box-shadow: 2px 2px 0 #133d11;
+}
+
+input[type=submit] {
+    background: rgb(209, 222, 0);
+    color: #195f7e;
+    border: none;
+    box-shadow: 2px 2px 0 #195f7e;
+    font-size: 11pt;
+    padding: 4px 16px;
+    align-self: center;
+    display: block;
+    margin: 16px auto 8px auto;
+}
+
+.table-form {
+    width: 50%;
+    background: #aec0d1;
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: 8px 8px 0 rgba(88, 88, 73, 0.31);
+    border: 1px solid rgba(124, 73, 128, 0.24);
+}
+
+.table-form .row {
+    display: flex;
+    margin-top: 8px;
+}
+
+.table-form .row > *:first-child {
+    flex: 1 0 100px;
+    border-bottom: 1px solid #197e1b;
+    align-self: center;
+    font-size: 11pt;
+    padding: 4px;
+}
+
+.table-form .row > *:last-child {
+    flex: 3 1 auto;
+}
+
+.msg.error {
+    color: red;
+}
+
+.msg.success {
+    color: green;
+}
+
+.messagesConsole {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+}
+
+.messagesConsole a {
+    color: rgb(88, 162, 215);
+}
+

@@ -1,0 +1,58 @@
+.delfolder-icon {
+	background-image:url('images/tree/unpublishedfolder.gif') !important;
+	background-position: left;
+}
+.delpage-icon {
+	background-image:url('images/tree/unpublishedpage.gif') !important;
+	background-position: left;
+}
+.addpage-icon {
+	background-image:url('images/tree/page.gif') !important;
+	background-position: left;
+}
+.linkpage-icon {
+	background-image:url('images/tree/page-html.gif') !important;
+	background-position: left;
+}		
+
+.treeUnpublishedDeletedNode a span {
+	color:#880000 !important; 
+	text-decoration: line-through !important;
+}
+
+.treeUnpublishedNode a span {
+	color:#880000 !important;
+}
+		
+.treeDeletedNode a span {
+	color:#333 !important; 
+	text-decoration: line-through !important;
+}
+
+.treePublishedNode a span {
+	color:#008800 !important;
+}
+
+.treeHiddenDeletedNode a span {
+	color: #bbb !important;
+	text-decoration: line-through !important;
+}
+
+.treeHiddenNode a span {
+	color: #bbb !important;
+}
+
+/**
+ * Классы применяются к нодам в момент выполнения действий таких как удаление, пока
+ * ожидается ответ от сервера.
+ */
+
+.siteTreeNodeDeleteing {
+	background-color: #ffe1dd !important;
+}
+
+
+.TupeMenuTop a span {
+    padding-left: 30px;
+    background: url('/assets/admin/images/vfs/star.png') 8px -2px no-repeat;
+}

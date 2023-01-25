@@ -1,0 +1,201 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: rgb(93, 143, 171);
+    min-width: 1040px;
+}
+
+body > .content {
+    flex: 1 0 auto;
+    background: #f0f5fa;
+    width: 1000px;
+    margin: 36px auto 16px auto;
+    box-sizing: border-box;
+    font-family: 'Mulish', Arial, serif;
+    border-radius: 16px;
+    font-size: 16px;
+    box-shadow: 0 0 20px rgb(68, 117, 144);
+    color: #222;
+    line-height: 24px;
+}
+
+.content > .contentContainer {
+    padding: 26px 42px 26px 42px;
+}
+
+.content > .contentHeader {
+    padding: 18px 18px 18px 40px;
+    background: #d3e0ec;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    color: #c1d0de;
+    text-shadow: 1px 1px 1px #ecf5ff;
+    font-size: 20px;
+    /*font-weight: bold;*/
+    box-shadow: 0 2px 6px #b4bec8;
+}
+
+.content > .contentHeader a {
+    color: #c1d0de;
+    text-decoration: none;
+}
+
+.content > .contentHeader a:hover {
+    text-decoration: underline;
+}
+
+body > .content input,
+body > .content button {
+    font-family: 'Mulish', Arial, serif;
+}
+
+body > .footer {
+    text-align: center;
+    background: rgb(93, 143, 171);
+    border-bottom: 6px solid rgb(89, 133, 157);
+
+    flex: 0 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr 200px 1fr;
+
+    font-size: 16px;
+    font-family: 'Mulish', Arial, serif;
+    color: #82a7ba;
+}
+
+body > .footer > .leftCell {
+    /*background: green;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+body > .footer > .rightCell {
+    /*background: blue;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+body > .footer a {
+    font-size: 26px;
+    color: #1b6882;
+    text-transform: uppercase;
+}
+
+body > .footer .footerContent {
+    margin: 8px;
+    /*background: red;*/
+    /*text-align: left;*/
+}
+
+.subfooter {
+    position: absolute;
+    font-family: Arial,serif;
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.07);
+    overflow: hidden;
+    height: 30px;
+    word-break: break-all;
+}
+
+body > .header {
+    background-color: rgb(60, 175, 237);
+    color: white;
+    font-family: Arial,serif;
+    text-align: left;
+    border-bottom: 4px solid rgb(52, 157, 214);
+    border-top: 4px solid rgb(60, 175, 237);
+    box-shadow: 0 0 10px rgb(68, 117, 144);
+    position: relative;
+    height: 34px;
+}
+
+body > .header > .headerContent {
+    position: relative;
+    z-index: 99;
+    width: 800px;
+    left: 50%;
+    margin-left: -400px;
+    display: flex;
+    flex-direction: row;
+    padding-left: 44px;
+}
+
+.headerContent .headerLogo {
+    padding: 4px;
+    font-size: 22px;
+    flex: 0 0 auto;
+}
+
+.headerContent .headerMenu {
+    flex: 1 0 auto;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+.headerContent .headerMenu a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px;
+    display: block;
+    border-left: 1px solid rgb(52, 157, 214);
+    align-items: end;
+    background: rgb(60, 175, 237);
+}
+
+.headerContent .headerMenu a:hover {
+    background: rgb(57, 185, 255);
+}
+
+.headerContent .headerMenu a.selected {
+    background: rgb(52, 157, 214);
+}
+
+img {
+    max-width: 100%;
+    border-color: white;
+    border-radius: 16px;
+    box-shadow: 3px 4px 8px rgba(128, 142, 152, 0.37);
+}
+
+.contentHeaderPicture {
+    background-size: cover;
+    height: 212px;
+    position: relative;
+    overflow: hidden;
+    margin: 1px 2px 1px 2px;
+}
+
+.contentHeaderPicture .slide {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 2px 6px #89a1b9;
+    transition: opacity 0.666s linear;
+    background-position: center;
+}
+
+.contentHeaderPicture .slideCover {
+    position: absolute;
+    left: -108px;
+    top: -196px;
+    width: 295px;
+    height: 603px;
+    background: #ffffff94;
+    transform: rotate(44deg);
+    transition: left 500ms ease-in-out;
+    border-right: 1px solid #dcdcdc1c;
+}

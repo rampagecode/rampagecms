@@ -1,0 +1,61 @@
+# php_value upload_max_filesize 20971520
+# php_value magic_quotes_gpc 0
+# Options +FollowSymlinks
+
+FileETag none
+RewriteEngine On
+
+# AuthName "Protected Area"
+# AuthType Basic
+# AuthUserFile /home/avantag/smile-nk.ru/docs/.htpasswd  
+# require valid-user
+
+# перекидываем запрсы на сжатие таблицы стилей
+# RewriteRule ^all(.*)-second.css$ /csszip.php?mode=css&s=s [L]
+# RewriteRule ^all(.*).css$ /csszip.php?mode=css [L]
+# RewriteRule ^js/(.*).js$ /csszip.php?js=$1 [L]
+
+# Для стратических файлов ставим заголовок Expires в далеком будущем, что закеширует их надолго
+
+#<IfModule headers_module>
+#	<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+#		Header set Expires "Thu, 17 Apr 2051 20:00:00 GMT"
+#	</FilesMatch>
+#	
+#	<FilesMatch "favicon.ico$">
+#		Header set Expires "Sat, 17 Jan 2009 08:55:13 GMT"
+#		Header set Cache-Control "max-age=5184000"
+#		Header set Content-Type "image/x-icon"
+#	</FilesMatch>	
+#</IfModule>	
+
+# Если идет обращение к картинке или другому статичному файлу, который отстутствует на сервере
+# (например, был удален), то отдаем ему однопиксельный прозрачный gif, чтобы не мучался.
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} \.(ico|pdf|flv|jpg|jpeg|png|gif|swf)$
+RewriteRule	(.*) http://%{HTTP_HOST}/assets/admin/images/editor/spacer.gif [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} \.(js|css|html)$
+RewriteRule ^ - [L,R=404]
+
+# Если к сайту обратились без префикса `www` то делаем принудительный редирект на ту-же страницу, но с префиксом.
+# ВНИМАНИЕ: Этот блок следует закомментировать, если сайт стоит на поддомене отличном от `www`.
+
+#RewriteCond %{HTTP_HOST} !^www\.(.*)$ [NC]
+#RewriteCond %{REQUEST_FILENAME} index.php$ [OR]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule	(.*) http://www.%{HTTP_HOST}/$1 [R,L]
+
+# Если мы дошли до сюда и запрос не адресован какому-либо существующему файлу, то передаем управление скрипту, а URL - параметром.
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule (.*) /index.php?_3xiqstr=%{REQUEST_URI} [L,QSA,R=307]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (.*) index.php [L,QSA]
+

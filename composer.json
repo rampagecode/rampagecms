@@ -1,0 +1,13 @@
+{
+    "config": {
+        "platform-check": false
+    },
+    "require": {
+        "zendframework/zendframework1": "1.12.20",
+        "phpunit/phpunit": "4.0.0",
+        "ext-json": "*",
+        "james-heinrich/getid3": "1.9.20",
+        "ext-gd": "*",
+        "swiftmailer/swiftmailer": "5.4.9"
+    }
+}
