@@ -51,7 +51,7 @@ if( ! rename(__FILE__, uniqid(__FILE__.'~'))) {
 $setup->messages[] = '';
 $setup->messages[] = 'Installation completed.';
 $setup->messages[] = '';
-$setup->messages[] = 'Open <a href="/admin">Website</> or <a href="/admin">Admin Panel</a>';
+$setup->messages[] = 'Open <a href="/admin">Website</a> or <a href="/admin">Admin Panel</a>';
 
 echo $view->pageHTML(
     $view->messagesConsole( $setup->messages, $setup->errors ),
