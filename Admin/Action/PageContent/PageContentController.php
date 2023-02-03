@@ -147,10 +147,7 @@ class PageContentController implements ModuleControllerProtocol  {
                 $this->app->db()
             );
 
-            $this->app->pages()->updateCache(
-                $this->app->rootDir('conf', 'cache.tree.php'),
-                new Table()
-            );
+            $this->app->pages()->updateCache( new Table() );
 
             $page = empty( $this->page_id ) ? new Page() : Page::createById( $this->page_id, new Table() );
             $page->setFromArray( $values );
@@ -237,10 +234,7 @@ class PageContentController implements ModuleControllerProtocol  {
             $deleted = $page->deletePage();
             $content = $widgets->messageBox("<b>{$deleted}</b> страниц было удалено" );
 
-            $this->app->pages()->updateCache(
-                $this->app->rootDir('conf', 'cache.tree.php'),
-                new Table()
-            );
+            $this->app->pages()->updateCache( new Table() );
         } catch(\Exception $e ) {
             $content = $widgets->error( $e->getMessage() );
         }

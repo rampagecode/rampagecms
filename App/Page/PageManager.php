@@ -7,13 +7,23 @@ use Sys\Input\InputManager;
 
 class PageManager {
 
+    /**
+     * @var array
+     */
     private $tree = [];
+
+    /**
+     * @var
+     */
+    private $cacheFileName;
 
     /**
      * @param $tree_cache_file
      * @param Table $table
      */
     function __construct( $tree_cache_file, Table $table ) {
+        $this->cacheFileName = $tree_cache_file;
+
         if( file_exists( $tree_cache_file )) {
             include $tree_cache_file;
         }
@@ -21,18 +31,17 @@ class PageManager {
         if( isset( $site_tree )) {
             $this->tree = $site_tree;
         } else {
-            $this->updateCache( $tree_cache_file, $table );
+            $this->updateCache( $table );
         }
     }
 
     /**
-     * @param $tree_cache_file
      * @param Table $table
      */
-    function updateCache( $tree_cache_file, Table $table ) {
+    function updateCache( Table $table ) {
         $pages = $table->getAllPages();
         $this->tree = $this->build_tree_from_pages( $pages, 0, '/' );
-        $this->writeToFile( $this->tree, $tree_cache_file );
+        $this->writeToFile( $this->tree, $this->cacheFileName );
     }
 
     /**

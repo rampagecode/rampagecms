@@ -73,10 +73,7 @@ class SystemController implements AdminControllerInterface {
      */
     function clearCacheAction() {
         $this->app->config()->updateSettingsCache();
-        $this->app->pages()->updateCache(
-            $this->app->rootDir('conf', 'cache.tree.php'),
-            new Table()
-        );
+        $this->app->pages()->updateCache( new Table() );
 
         $widgets = new WidgetsView();
 

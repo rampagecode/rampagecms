@@ -110,10 +110,7 @@ class SiteTreeController implements ModuleControllerProtocol  {
             $c++;
         }
 
-        $this->app->pages()->updateCache(
-            $this->app->rootDir('conf', 'cache.tree.php'),
-            new Table()
-        );
+        $this->app->pages()->updateCache( new Table() );
 
         return json_encode( array( 'result' => true, 'error' => 'ERROR#1' ));
     }
