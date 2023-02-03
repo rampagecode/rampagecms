@@ -34,6 +34,12 @@ interface ModuleInterface {
 
     /**
      * @param int $moduleId
+     * @return ModuleControllerProtocol
+     */
+    function getComplexFrontend( $moduleId );
+
+    /**
+     * @param int $moduleId
      * @return ModuleBackendController
      */
     function getBackend( $moduleId );

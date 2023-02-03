@@ -3,6 +3,7 @@
 namespace App\Module;
 
 use App\AppInterface;
+use Module\ModuleException;
 
 abstract class NonInstallableModule implements ModuleInterface {
     /**
@@ -35,4 +36,13 @@ abstract class NonInstallableModule implements ModuleInterface {
      * @return void
      */
     function onUninstall( $moduleId ) {}
+
+    /**
+     * @param $moduleId
+     * @return void
+     * @throws ModuleException
+     */
+    function getComplexFrontend( $moduleId ) {
+        throw new ModuleException('For a non-installable module use getFrontend()');
+    }
 }

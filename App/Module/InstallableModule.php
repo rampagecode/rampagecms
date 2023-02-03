@@ -3,6 +3,7 @@
 namespace App\Module;
 
 use App\AppInterface;
+use Module\ModuleException;
 
 abstract class InstallableModule implements ModuleInterface {
     /**
@@ -38,5 +39,13 @@ abstract class InstallableModule implements ModuleInterface {
         return new \Zend_Db_Table([
             \Zend_Db_Table_Abstract::NAME => $this->getTableName( $moduleId )
         ]);
+    }
+
+    /**
+     * @return ModuleControllerProtocol
+     * @throws ModuleException
+     */
+    public function getFrontend() {
+        throw new ModuleException('For an installable module use getComplexFrontend()');
     }
 }
