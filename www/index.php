@@ -13,7 +13,7 @@ define('ROOT_PATH', dirname(__DIR__) );
 set_include_path(get_include_path() . PATH_SEPARATOR . ROOT_PATH);
 
 require_once(ROOT_PATH.DIRECTORY_SEPARATOR.'Lib/FileFlag.php');
-$debugFlag = new FileFlag('conf'.DIRECTORY_SEPARATOR.'debug_on');
+$debugFlag = new FileFlag(ROOT_PATH.DIRECTORY_SEPARATOR.'conf'.DIRECTORY_SEPARATOR.'debug_on');
 
 define('DEBUG_ON', $debugFlag->getFlag() );
 
