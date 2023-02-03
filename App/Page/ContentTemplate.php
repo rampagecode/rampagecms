@@ -5,9 +5,12 @@ namespace App\Page;
 class ContentTemplate implements TemplateProtocol {
     public $id;
     public $property;
+    public $reference;
 
-    public function __construct( $id = null ) {
+    public function __construct( $id = null, $property = null, $reference = null ) {
         $this->id = $id;
+        $this->property = $property;
+        $this->reference = $reference;
     }
 
     /**
@@ -15,16 +18,18 @@ class ContentTemplate implements TemplateProtocol {
      * @return void
      */
     function parseTemplate( array $r ) {
-        switch( $r[1] ) {
-            case '~':
-                if( $val = intval( $r[2] )) {
-                    $this->id = $val;
-                }
-                break;
+        if( isset( $r[0] )) {
+            if( $id = intval( $r[0] )) {
+                $this->id = $id;
+            } else {
+                $this->reference = $r[0];
+            }
+        }
 
-            case '?':
+        if( isset( $r[1] ) && $r[1] == '?' ) {
+            if( isset( $r[2] )) {
                 $this->property = $r[2];
-                break;
+            }
         }
     }
 
@@ -34,7 +39,6 @@ class ContentTemplate implements TemplateProtocol {
      */
     function parseOverload( array $overload ) {
         $this->id = isset( $overload['id'] ) ? $overload['id'] : $this->id;
-        $this->property = isset( $overload['property'] ) ? $overload['property'] : $this->property;
     }
 
     /**

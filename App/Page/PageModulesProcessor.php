@@ -120,9 +120,14 @@ class PageModulesProcessor {
             throw new AppException('Отсутствует имя модуля' );
         }
 
-        $path = $this->app->rootDir( 'Module', ucfirst( $name ));
-        $front = ModuleFactory::loadModule( $path, $this->app )->getFrontend();
+        list( $name, $id ) = explode(':', $name );
 
+        $path = $this->app->rootDir( 'Module', ucfirst( $name ));
+        $module = ModuleFactory::loadModule( $path, $this->app );
+        $front = empty( $id )
+            ? $module->getFrontend()
+            : $module->getComplexFrontend( $id )
+        ;
 
         if( empty( $front )) {
             throw new AppException('У модуля нет публичного интерфейса' );

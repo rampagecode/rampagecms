@@ -28,6 +28,16 @@ class PageContentProcessor {
             $i = $t->getTemplate();
 
             if( $i instanceof ContentTemplate ) {
+                if( empty( $i->id ) && !empty( $i->reference )) {
+                    foreach( $templates as $tt ) {
+                        $j = $tt->getTemplate();
+
+                        if( $i->reference == $tt->getPlaceholder() && $j instanceof ContentTemplate ) {
+                            $i->id = $j->id;
+                        }
+                    }
+                }
+
                 $this->contents[ $t->getSrc() ] = $i;
             }
         }

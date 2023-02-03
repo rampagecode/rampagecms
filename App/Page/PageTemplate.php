@@ -47,7 +47,7 @@ class PageTemplate {
      * @param array $overloads
      */
     public function __construct( $pageId, array $overloads, $content, $option = '' ) {
-        $this->src = '<!--[!' . $content . ']' . $option . '-->';
+        $this->src = '<!--[' . $content . ']' . $option . '-->';
         $this->content = $content;
         $this->option = $option;
         $this->parse( $pageId, $overloads );
@@ -83,39 +83,24 @@ class PageTemplate {
      * @return void
      */
     private function parse( $pageId, array $overloads ) {
-        $r = preg_split(
-            "/([\!\=\?\@\|\*\~])/",
+        $keyValue = preg_split(
+            "/([\=\~])/",
             $this->content,
             -1,
             PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE
         );
 
-        $this->key = $r[0];
+        if( count( $keyValue ) == 1 ) {
+            // only a placeholder that should be overridden in the admin panel
+            $content = $keyValue[0];
+            $this->template = new ContentTemplate();
+        }
+        elseif( count( $keyValue ) == 3 ) {
+            // check $keyValue[1] to determine the type of the template
+            $this->key = $keyValue[0];
+            $content = $keyValue[2];
 
-        if( count( $r ) == 1 && !empty( $overloads[ $this->key ] )) {
-            $this->overloaded = true;
-
-            $overload = $overloads[ $this->key ];
-
-            switch( $overload['type'] ) {
-                case 'module':
-                    $this->template = new ModuleTemplate();
-                    break;
-
-                case 'content':
-                    $this->template = new ContentTemplate();
-                    break;
-
-                default:
-                    return;
-            }
-
-            $this->template->parseOverload( $overload );
-            $this->noadmin = (bool) $overload['noadmin'];
-        } else {
-            $this->overloaded = false;
-
-            switch( $r[1] ) {
+            switch( $keyValue[1] ) {
                 case '=':
                     $this->template = new ModuleTemplate();
                     break;
@@ -124,33 +109,30 @@ class PageTemplate {
                     $this->template = new ContentTemplate();
                     break;
 
-                default:
+                case '^':
                     if( empty( $overloads[ $this->key ] )) {
-                        $this->template = new ContentTemplate();
-                    } else {
-                        $overload = $overloads[ $this->key ];
-
-                        switch( $overload['type'] ) {
-                            case 'module':
-                                $this->template = new ModuleTemplate();
-                                break;
-
-                            case 'content':
-                                $this->template = new ContentTemplate();
-                                break;
-
-                            default:
-                                return;
-                        }
-
-                        $this->template->parseOverload( $overload );
+                        return;
                     }
-
                     break;
             }
-
-            $this->template->parseTemplate( $r );
         }
+        else {
+            // incorrect syntax of the template
+            return;
+        }
+
+        $r = preg_split(
+            "/([\?\@\|\*\~])/",
+            $content,
+            -1,
+            PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE
+        );
+
+        if( empty( $this->key )) {
+            $this->key = $r[0];
+        }
+
+        $this->template->parseTemplate( $r );
 
         if( strstr( $this->option, 'noadmin')) {
             if( ! $this->overloaded ) {
@@ -164,6 +146,29 @@ class PageTemplate {
             } else {
                 $this->noadmin = true;
             }
+        }
+
+        if( !empty( $overloads[ $this->key ] )) {
+            $overload = $overloads[ $this->key ];
+            $this->noadmin = (bool) $overload['noadmin'];
+
+            switch( $overload['type'] ) {
+                case 'module':
+                    $this->template = new ModuleTemplate();
+                    $this->overloaded = true;
+                    break;
+
+                case 'content':
+                    $this->template = new ContentTemplate();
+                    $this->overloaded = true;
+                    break;
+
+                default:
+                    $this->overloaded = false;
+                    return;
+            }
+
+            $this->template->parseOverload( $overload );
         }
     }
 }
