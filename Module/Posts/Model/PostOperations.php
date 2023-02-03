@@ -3,6 +3,8 @@
 namespace Module\Posts\Model;
 
 use App\Page\ContentTemplate;
+use App\Page\Page;
+use App\Page\PageManager;
 use Module\ModuleException;
 use Sys\Database\DatabaseInterface;
 
@@ -13,6 +15,11 @@ class PostOperations {
     private $db;
 
     /**
+     * @var PageManager
+     */
+    private $pm;
+
+    /**
      * @var \Zend_Db_Table
      */
     private $moduleTable;
@@ -21,8 +28,9 @@ class PostOperations {
      * @param DatabaseInterface $db
      * @param \Zend_Db_Table $moduleTable
      */
-    public function __construct( DatabaseInterface $db, \Zend_Db_Table $moduleTable) {
+    public function __construct( DatabaseInterface $db, PageManager $pm, \Zend_Db_Table $moduleTable) {
         $this->db = $db;
+        $this->pm = $pm;
         $this->moduleTable = $moduleTable;
     }
 
@@ -147,6 +155,7 @@ class PostOperations {
                 'page_id' => $page_id,
             ])->save();
 
+            $this->pm->updateCache( new \Data\Page\Table() );
             $this->db->commit();
         } catch (\Exception $e) {
             $this->db->rollBack();
@@ -191,5 +200,37 @@ class PostOperations {
         $data->longText = $longText;
 
         return $data;
+    }
+
+    /**
+     * @param int $postId
+     * @return int number of deleted pages
+     * @throws ModuleException
+     * @throws \App\AppException
+     * @throws \Data\DataException
+     * @throws \Zend_Db_Table_Exception
+     */
+    function deletePost( $postId ) {
+        $this->db->beginTransaction();
+
+        if( empty( $postId )) {
+            throw new ModuleException('Post id is not set');
+        }
+
+        $postRow = $this->moduleTable->find( $postId )->current();
+
+        if( empty( $postRow )) {
+            throw new ModuleException('Post row is not found');
+        }
+
+        $pageId = $postRow['page_id'];
+        $page = Page::createById( $pageId, new \Data\Page\Table() );
+        $deleted = $page->deletePage(true );
+
+        $this->moduleTable->delete('id = '.$postId );
+        $this->pm->updateCache( new \Data\Page\Table() );
+        $this->db->commit();
+
+        return $deleted;
     }
 }

@@ -67,11 +67,16 @@ class PostsController extends ModuleBackendController {
     }
 
     function editAction() {
-        $operations = new PostOperations( $this->app->db(), $this->getModuleTable() );
+        $operations = new PostOperations( $this->app->db(), $this->app->pages(), $this->getModuleTable() );
         $postId = intval( $this->parameters->idx );
-        $data = $operations->loadPostData( $postId );
+        $widgets = new WidgetsView();
 
-        return $this->editForm( $data );
+        try {
+            $data = $operations->loadPostData( $postId );
+            return $this->editForm( $data );
+        } catch (\Exception $e ) {
+            return $widgets->error( $e->getMessage() );
+        }
     }
 
     function saveAction() {
@@ -93,7 +98,7 @@ class PostsController extends ModuleBackendController {
             return $widgets->error( $e->getMessage() ) . $this->editForm( $data );
         }
 
-        $operations = new PostOperations( $this->app->db(), $this->getModuleTable() );
+        $operations = new PostOperations( $this->app->db(), $this->app->pages(), $this->getModuleTable() );
 
         try {
             if( empty( $data->id )) {
@@ -122,32 +127,10 @@ class PostsController extends ModuleBackendController {
     function deleteAction() {
         $postId = $this->parameters->idx;
         $widgets = new WidgetsView();
+        $operations = new PostOperations( $this->app->db(), $this->app->pages(), $this->getModuleTable() );
 
-        $this->app->db()->beginTransaction();
         try {
-            if( empty( $postId )) {
-                throw new ModuleException('');
-            }
-
-            $postRow = $this->getModuleTable()->find( $postId )->current();
-
-            if( empty( $postRow )) {
-                throw new ModuleException('');
-            }
-
-            $pageId = $postRow['page_id'];
-            $page = Page::createById( $pageId, new \Data\Page\Table());
-            $deleted = $page->deletePage(true);
-
-            $this->getModuleTable()->delete('id = '.$postId);
-
-            $this->app->pages()->updateCache(
-                $this->app->rootDir('conf', 'cache.tree.php'),
-                new \Data\Page\Table()
-            );
-
-            $this->app->db()->commit();
-
+            $deleted = $operations->deletePost( $postId );
             return $widgets->messageBox("<b>{$deleted}</b> страниц было удалено" ) . $this->showListAction();
         } catch(\Exception $e ) {
             $this->app->db()->rollBack();

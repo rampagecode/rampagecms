@@ -5,6 +5,7 @@ namespace Module\Posts;
 use App\AppInterface;
 use App\Module\InstallableModule;
 use App\Module\ModuleInfo;
+use Module\ModuleException;
 
 class Posts extends InstallableModule {
     /**
@@ -49,15 +50,29 @@ class Posts extends InstallableModule {
 
     /**
      * @return Frontend\PostsController
+     * @throws ModuleException
      */
     function getFrontend() {
-        return new Frontend\PostsController( $this->app );
+        throw new ModuleException('use getComplexFrontend');
+    }
+
+    /**
+     * @param int $moduleId
+     * @return Frontend\PostsController
+     * @throws ModuleException
+     */
+    public function getComplexFrontend( $moduleId ) {
+        $controller = new Frontend\PostsController( $this->app );
+        $controller->setModuleId( $moduleId );
+        $controller->setModuleDelegate( $this );
+
+        return $controller;
     }
 
     /**
      * @param $moduleId
      * @return Backend\PostsController
-     * @throws \Module\ModuleException
+     * @throws ModuleException
      */
     function getBackend( $moduleId ) {
         $controller = new Backend\PostsController( $this->app );
