@@ -60,6 +60,11 @@ class Installer {
     private $userPass;
 
     /**
+     * @var bool
+     */
+    private $dbExists = false;
+
+    /**
      * @param string $host
      * @param string $user
      * @param string $password
@@ -139,12 +144,7 @@ EOF;
      * @return bool
      */
     private function prepare() {
-        $db_exists = mysqli_select_db( $this->dbInstance, $this->database );
-
-        if( $db_exists ) {
-            $this->errors[] = 'Database already exists';
-            return false;
-        }
+        $this->dbExists = mysqli_select_db( $this->dbInstance, $this->database );
 
         if( ! file_exists( $this->dumpPath )) {
             $this->errors[] = 'DB dump file not found';
@@ -182,13 +182,13 @@ EOF;
 
         mysqli_set_charset( $db, 'utf8mb4' );
 
-        if( ! mysqli_query( $db, "CREATE DATABASE $this->database" )) {
+        if( !$this->dbExists && !mysqli_query( $db, "CREATE DATABASE $this->database" )) {
             throw new Exception('Unable to create a database');
         }
 
-        $db_exists = mysqli_select_db( $db, $this->database );
+        $this->dbExists = mysqli_select_db( $db, $this->database );
 
-        if( ! $db_exists ) {
+        if( !$this->dbExists ) {
             throw new Exception('Database was not created');
         }
 
