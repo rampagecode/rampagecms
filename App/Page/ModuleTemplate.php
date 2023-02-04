@@ -30,16 +30,16 @@ class ModuleTemplate implements TemplateProtocol {
     }
 
     function parseTemplate( array $r ) {
-        $this->mod = $r[2];
+        $this->mod = $r[0];
 
-        if( $r[3] == '*' ) {
+        if( $r[1] == '*' ) {
             // метод определен
-            $this->act = $r[4];
-            $_var_pos = 6;
+            $this->act = $r[2];
+            $_var_pos = 4;
         } else {
             // метод по-умолчанию
             $this->act = 'auto_run';
-            $_var_pos = 3;
+            $_var_pos = 1;
         }
 
         $this->varValue = $r[$_var_pos + 1];
