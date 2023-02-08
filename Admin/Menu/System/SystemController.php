@@ -12,6 +12,7 @@ use App\UI\TableBuilder;
 use Data\Page\Table;
 use Lib\FileFlag;
 use Lib\FormItem\Bool;
+use Lib\LibraryException;
 
 class SystemController implements AdminControllerInterface {
 
@@ -174,6 +175,23 @@ class SystemController implements AdminControllerInterface {
             } else {
                 return  $widgets->error('Не удалось выключить режим отладки');
             }
+        }
+    }
+
+    /**
+     * @throws LibraryException
+     */
+    function dumpAction() {
+        $dumper = new \Lib\MysqlDump( $this->app->db()->getConnection() );
+        $widgets = new WidgetsView();
+
+        try {
+            $filepath = $this->app->rootDir('dump.sql');
+            $dumper->save( $filepath );
+
+            return $widgets->messageBox( "Dump created at path `{$filepath}`" );
+        } catch (LibraryException $e) {
+            return $widgets->error( $e->getMessage() );
         }
     }
 }

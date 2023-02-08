@@ -56,4 +56,9 @@ interface DatabaseInterface {
      * @return DatabaseInterface
      */
     public function rollBack();
+
+    /**
+     * @return \PDO
+     */
+    public function getConnection();
 }

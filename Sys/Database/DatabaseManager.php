@@ -111,6 +111,13 @@ class DatabaseManager implements DatabaseInterface {
     }
 
     /**
+     * @return \PDO
+     */
+    public function getConnection() {
+        return $this->db->getConnection();
+    }
+
+    /**
      * @throws SystemException
      */
     private function loadConfig( $path ) {
