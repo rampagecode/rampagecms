@@ -121,7 +121,7 @@ class MembersController implements AdminControllerInterface {
         }
 
         $pass_salt = \App\User\Password::generatePasswordSalt();
-        $pass_hash = \App\User\Password::generateCompiledPasshash( $pass_salt, md5( $values['password'] ));
+        $pass_hash = \App\User\Password::generateCompiledPasshash( $pass_salt, md5( $values['pass'] ));
         $member = [
             'login'             => $values['login'],
             'dname' 			=> $values['name'],
