@@ -303,9 +303,6 @@ class MembersController implements AdminControllerInterface {
         $form->action = $this->parameters->buildURL( null, 'saveEdit' );
         $form->method = 'post';
 
-        $form->removeByFormItemName('pass');
-        $form->removeItemByName('pass');
-
         return $widgets->tableHeader( 'Редактирование пользователя' )
             . $form->buildTable( $builder, 'Сохранить' )
         ;
@@ -316,7 +313,11 @@ class MembersController implements AdminControllerInterface {
      */
     function saveEditAction() {
         $form = new FormCreate();
-        $form->removeItemByName('pass');
+        $pass = $this->app->in('pass');
+
+        if( empty( $pass )) {
+            $form->removeItemByName('pass');
+        }
 
         $processing = new FormProcessing( $form->getItemsArray() );
         $processing->process( $this->app->in() );
@@ -349,6 +350,11 @@ class MembersController implements AdminControllerInterface {
             return $widgets->errorList( $errors ) . $this->editAction( $values );
         }
 
+        $pass_salt = \App\User\Password::generatePasswordSalt();
+        $pass_hash = \App\User\Password::generateCompiledPasshash( $pass_salt, md5( $values['pass'] ));
+
+        $userRow['pass_hash'] = $pass_hash;
+        $userRow['pass_salt'] = $pass_salt;
         $userRow['login'] = $values['login'];
         $userRow['dname'] = $values['name'];
         $userRow['email'] = $values['email'];

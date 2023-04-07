@@ -58,6 +58,7 @@ class FormCreate extends FormBuilder {
         return $this->createRows([
             'login' => $row['login'],
             'name' => $row['dname'],
+            'pass' => '',
             'email' => $row['email'],
             'group' => $row['mgroup'],
         ], $options );
@@ -72,6 +73,7 @@ class FormCreate extends FormBuilder {
         return $this->createRows([
             'login' => $in['login'],
             'name' => $in['name'],
+            'pass' => '',
             'email' => $in['email'],
             'group' => $in['group'],
         ], $options );
