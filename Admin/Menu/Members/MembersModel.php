@@ -25,10 +25,8 @@ class MembersModel {
         $groupOptions = new FormSelectOptions();
 
         foreach( $groupRows as $r ) {
-            if( $this->app->getVar('admin_group') == $r['g_id'] ) {
-                if( $this->app->getUser()->isWebmaster() ) {
-                    continue;
-                }
+            if( $this->app->getVar('admin_group') == $r['g_id'] && $this->app->getUser()->isAdmin() == false ) {
+                continue;
             }
 
             $groupOptions->addOption( $r['g_title'], $r['g_id'] );

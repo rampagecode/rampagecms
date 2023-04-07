@@ -286,7 +286,7 @@ final class User {
     /**
      * @return bool
      */
-    public function isWebmaster() {
+    public function isAdmin() {
         return (bool)($this->getGroup() === self::GROUP_ADMIN);
     }
 
