@@ -23,7 +23,6 @@ CREATE TABLE `admin_menu` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `admin_menu` WRITE;
-/*!40000 ALTER TABLE `admin_menu` DISABLE KEYS */;
 
 INSERT INTO `admin_menu` (`id`, `name`, `catalog`, `section`, `pos`, `pop`, `link`, `type`, `icon`, `do_hits`, `hidden`, `page_id`)
 VALUES
@@ -39,7 +38,6 @@ VALUES
 ,   (12, 'Дамп БД', 8, 'SystemSection', 4, 0, '[tab://]&a=system&i=dump', 'normal', '03.png', 0, 0, 0)
 ;
 
-/*!40000 ALTER TABLE `admin_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -84,7 +82,6 @@ CREATE TABLE `conf_settings` (
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `conf_settings` WRITE;
-/*!40000 ALTER TABLE `conf_settings` DISABLE KEYS */;
 
 INSERT INTO `conf_settings` (`conf_id`, `conf_title`, `conf_desc`, `conf_group`, `conf_type`, `conf_key`, `conf_value`, `conf_default`, `conf_extra`, `conf_position`, `conf_add_cache`, `conf_noshow`)
 VALUES
@@ -105,7 +102,6 @@ VALUES
 ,   (16, 'Использовать SMTP для отправки E-mail', 'Если включено, то отправка писем будет по SMTP, иначе с помощью функции mail()', 2, 'yes_no', 'email_use_smtp', '', '0', '', 5, 1, 0)
 ;
 
-/*!40000 ALTER TABLE `conf_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -125,7 +121,6 @@ CREATE TABLE `conf_settings_titles` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `conf_settings_titles` WRITE;
-/*!40000 ALTER TABLE `conf_settings_titles` DISABLE KEYS */;
 
 INSERT INTO `conf_settings_titles` (`conf_title_id`, `conf_title_title`, `conf_title_desc`, `conf_title_noshow`, `conf_title_keyword`, `conf_title_position`)
 VALUES
@@ -135,7 +130,6 @@ VALUES
 ,   (4, 'Настройки времени', '', 0, '0', 4)
 ;
 
-/*!40000 ALTER TABLE `conf_settings_titles` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -154,7 +148,6 @@ CREATE TABLE `groups` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `groups` WRITE;
-/*!40000 ALTER TABLE `groups` DISABLE KEYS */;
 
 INSERT INTO `groups` (`g_id`, `g_title`, `suffix`, `prefix`, `g_access`)
 VALUES
@@ -164,7 +157,6 @@ VALUES
 ,   (4, 'Администраторы', '</span>', '<span style=\'color:red; border-bottom: 1px dashed red;\'>', '{\"adminPanel\":true,\"admin\":{\"desktop\":true,\"tree\":true,\"content\":true,\"groups\":true,\"users\":true,\"settings\":true,\"system\":true,\"module\":true},\"offline\":true}')
 ;
 
-/*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -299,7 +291,6 @@ CREATE TABLE `site_tree` (
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `site_tree` WRITE;
-/*!40000 ALTER TABLE `site_tree` DISABLE KEYS */;
 
 INSERT INTO `site_tree` (`id`, `pagetitle`, `longtitle`, `alias`, `published`, `parent`, `isfolder`, `templates`, `layout`, `searchable`, `cacheable`, `createdby`, `createdon`, `editedby`, `editedon`, `deleted`, `deletedon`, `deletedby`, `publishedon`, `publishedby`, `donthit`, `haskeywords`, `hasmetatags`, `menu_pos`, `admin_pr`, `keywords`, `admin_groups_access`, `hidden`, `in_module`, `link`, `is_link`, `only_user`, `show_in_admin_menu`, `show_in_public_menu`)
 VALUES
@@ -318,7 +309,6 @@ VALUES
 ,   (13, 'Конфигурация вручную', '', 'manual', 1, 4, 0, 'a:1:{s:31:\"Основной_контент\";a:2:{s:4:\"type\";s:7:\"content\";s:2:\"id\";s:2:\"26\";}}', 'index', 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, '', 'a:0:{}', 0, 0, 0, 0, 0, 1, 0)
 ;
 
-/*!40000 ALTER TABLE `site_tree` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -394,7 +384,6 @@ CREATE TABLE `vfs_folders` (
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `vfs_folders` WRITE;
-/*!40000 ALTER TABLE `vfs_folders` DISABLE KEYS */;
 
 INSERT INTO `vfs_folders` (`id`, `name`, `parent`)
 VALUES
@@ -413,7 +402,6 @@ VALUES
 ,   (18, 'Конфигурация сервера', 17)
 ;
 
-/*!40000 ALTER TABLE `vfs_folders` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -439,7 +427,6 @@ CREATE TABLE `vfs_imgs` (
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `vfs_imgs` WRITE;
-/*!40000 ALTER TABLE `vfs_imgs` DISABLE KEYS */;
 
 INSERT INTO `vfs_imgs` (`id`, `real_name`, `sys_name`, `thumb_name`, `time_upload`, `file_ext`, `file_size`, `vfs_folder`, `width`, `height`, `thumb_width`, `thumb_height`)
 VALUES
@@ -453,7 +440,6 @@ VALUES
 ,   (22, 'Бедный кот', 'c7db3c5103ad591ef038ce44ff4f0424.jpeg', '4240f4ff44ec830fe195da3015c3bd7c.jpeg', '1674562233', 'jpeg', 100722, 16, 811, 639, 94, 74)
 ;
 
-/*!40000 ALTER TABLE `vfs_imgs` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -476,7 +462,6 @@ CREATE TABLE `vfs_texts` (
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
 
 LOCK TABLES `vfs_texts` WRITE;
-/*!40000 ALTER TABLE `vfs_texts` DISABLE KEYS */;
 
 INSERT INTO `vfs_texts` (`id`, `title`, `vfs_folder`, `text_formatted`, `text_searchable`, `present_at_pages`, `parent_sheet`, `root_sheet`, `pos`)
 VALUES
@@ -495,7 +480,6 @@ VALUES
 ,   (26, 'Конфигурация вручную (Основной_контент)', 18, '<div>Предполагается, что в системе уже установлены PHP 5.4 и MySQL 5.</div>\r\n<div>Обратите внимание, что PHP более новых версий не подойдет, а вот MySQL может быть новее, но тогда возможны проблемы с кодировкой при подключении. Их можно решить, способ приведен ниже.</div>\r\n<div>&nbsp;</div>\r\n<div>Перейдите на один уровень выше корневой директории веб-сервера.</div>\r\n<div>Выполните команду </div>\r\n<div><strong>git clone https://github.com/rampagecode/rampagecms.git</strong></div>\r\n<div>Если необходимо поменять у директории <em>rampagecms</em> и её поддиректорий  владельца и/или группу:&nbsp;</div>\r\n<div><strong>chown -R user:group rampagecms</strong></div>\r\n<div>Убедитесь, что директории <em>rampagecms</em>, <em>rampagecms/conf</em>, <em>rampagecms/www</em> имеют права на запись.</div>\r\n<div>Перейдите в директорию therampageorg и установите <em>Composer</em> версии <em>2.2.10</em>:&nbsp;</div>\r\n<div><strong>php -r \"copy(\'https://getcomposer.org/installer\', \'composer-setup.php\');\"</strong></div>\r\n<div><strong>php composer-setup.php --version=2.2.10</strong></div>\r\n<div><strong>php composer.phar install</strong></div>\r\n<div>&nbsp;</div>\r\n<div>Если в системе установлена MySQL версии 7 или выше, то вероятна проблема с поддержкой кодировки.</div>\r\n<div>Для её решения можно либо установить MySQL версии 5, либо прописать в файле my.cnf настройки:</div>\r\n<div><strong>[client]</strong></div>\r\n<div><strong>default-character-set=utf8</strong></div>\r\n<div><strong>[mysql]</strong></div>\r\n<div><strong>default-character-set=utf8</strong></div>\r\n<div><strong>[mysqld]</strong></div>\r\n<div><strong>collation-server = utf8_unicode_ci</strong></div>\r\n<div><strong>character-set-server = utf8&nbsp;</strong></div>\r\n<div>Файл my.cnf может находиться в директориях /etc, /etc/mysql или в домашнем каталоге пользователя</div>\r\n<div>&nbsp;</div>\r\n<div>Сделайте символическую ссылку с директории www внутри проекта, на корневую директорию веб-сервера:</div>\r\n<div>Например, предположим, что корневая директория веб-сервера это <em>/var/www</em>, тогда:</div>\r\n<div><strong>ln -s /var/rampagecms/www /var/www&nbsp;</strong></div>', 'Предполагается, что в системе уже установлены PHP 5.4 и MySQL 5.\r\nОбратите внимание, что PHP более новых версий не подойдет, а вот MySQL может быть новее, но тогда возможны проблемы с кодировкой при подключении. Их можно решить, способ приведен ниже.\r\n&nbsp;\r\nПерейдите на один уровень выше корневой директории веб-сервера.\r\nВыполните команду \r\ngit clone https://github.com/rampagecode/rampagecms.git\r\nЕсли необходимо поменять у директории rampagecms и её поддиректорий  владельца и/или группу:&nbsp;\r\nchown -R user:group rampagecms\r\nУбедитесь, что директории rampagecms, rampagecms/conf, rampagecms/www имеют права на запись.\r\nПерейдите в директорию therampageorg и установите Composer версии 2.2.10:&nbsp;\r\nphp -r \"copy(\'https://getcomposer.org/installer\', \'composer-setup.php\');\"\r\nphp composer-setup.php --version=2.2.10\r\nphp composer.phar install\r\n&nbsp;\r\nЕсли в системе установлена MySQL версии 7 или выше, то вероятна проблема с поддержкой кодировки.\r\nДля её решения можно либо установить MySQL версии 5, либо прописать в файле my.cnf настройки:\r\n[client]\r\ndefault-character-set=utf8\r\n[mysql]\r\ndefault-character-set=utf8\r\n[mysqld]\r\ncollation-server = utf8_unicode_ci\r\ncharacter-set-server = utf8&nbsp;\r\nФайл my.cnf может находиться в директориях /etc, /etc/mysql или в домашнем каталоге пользователя\r\n&nbsp;\r\nСделайте символическую ссылку с директории www внутри проекта, на корневую директорию веб-сервера:\r\nНапример, предположим, что корневая директория веб-сервера это /var/www, тогда:\r\nln -s /var/rampagecms/www /var/www&nbsp;', '13', 0, 0, 0)
 ;
 
-/*!40000 ALTER TABLE `vfs_texts` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
