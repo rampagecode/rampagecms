@@ -11,15 +11,15 @@ class TextFormatter {
      * @param	integer	size in bytes
      * @return	string	Human size
      */
-    function formatSize( $bytes ) {
+    function formatSize( $bytes, LanguageManager $lang ) {
         if( $bytes >= 1048576 ) {
-            return round( $bytes / 1048576 * 100 ) / 100 .'&nbsp;'. $this->lang['sf_mb'];
+            return round( $bytes / 1048576 * 100 ) / 100 .'&nbsp;'. $lang['sf_mb'];
         }
         else if( $bytes  >= 1024 ) {
-            return round( $bytes / 1024 * 100 ) / 100 .'&nbsp;'. $this->lang['sf_k'];
+            return round( $bytes / 1024 * 100 ) / 100 .'&nbsp;'. $lang['sf_k'];
         }
         else {
-            return $bytes .'&nbsp;'. $this->lang['sf_bytes'];
+            return $bytes .'&nbsp;'. $lang['sf_bytes'];
         }
     }
 

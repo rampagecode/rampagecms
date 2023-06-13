@@ -86,7 +86,7 @@ class DocumentManagerController implements \Admin\AdminControllerInterface {
             // о размере этого файла
             //-----------------------------------------
 
-            $_js .= 'aDocSize['.$row['id'].'] = "'.$formatter->formatSize(( $row['file_size'] )).'";'."\n";
+            $_js .= 'aDocSize['.$row['id'].'] = "'.$formatter->formatSize( $row['file_size'], $this->app->language() ).'";'."\n";
 
             //-----------------------------------------
             // Об имени файла
