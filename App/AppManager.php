@@ -29,6 +29,7 @@ use Sys\Input\InputManager as InputManager;
 use Sys\Error\ErrorHandler;
 use Sys\Log\LoggerInterface;
 use Sys\Request\RequestManager;
+use App\Download\DownloadManager;
 
 require_once 'AppInterface.php';
 
@@ -213,6 +214,25 @@ class AppManager implements AppInterface {
                 $this->logger->end();
                 ob_clean();
                 return;
+            }
+
+            $downloadId = intval( $this->input['download'] );
+
+            if( $downloadId ) {
+                $docDir = $this->getVar('docs_dir');
+                $download = new DownloadManager( $docDir );
+
+                try {
+                    $doc = $download->findDocument( $downloadId, $this->getUser() );
+                    $download->sendDocument( $doc );
+                    exit();
+                } catch( AppException $e ) {
+                    $this->result = new PageResult();
+                    $this->result->setContent( $e->getMessage() );
+                    $this->logger->end();
+                    ob_clean();
+                    return;
+                }
             }
 
             $this->pages = new PageManager( $this->files->rootDir('conf', 'cache.tree.php'), new Table());
