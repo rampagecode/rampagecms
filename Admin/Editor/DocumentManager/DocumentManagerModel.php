@@ -90,7 +90,7 @@ class DocumentManagerModel {
 
         $full_access = array();
 
-        foreach( $cache AS $gid ) {
+        foreach( $cache['group_cache'] AS $gid ) {
             $full_access[] = $gid['g_id'];
         }
 
