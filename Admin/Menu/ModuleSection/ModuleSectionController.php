@@ -243,14 +243,14 @@ class ModuleSectionController implements AdminControllerInterface {
 
                 $pageId = $this->createPage(
                     $module->getInfo()->name,
-                    $module->getInfo()->title,
+                    $values['title'],
                     serialize( $templates ),
                     $values['main_page_layout']
                 );
 
                 // Создаем папку для контента к корневой директории
                 $textFolderId = (new \Data\Folder\Table())->create(
-                    $module->getInfo()->title,
+                    $values['title'],
                     $this->app->getVar('db_text_mgr_root_id' )
                 );
 
