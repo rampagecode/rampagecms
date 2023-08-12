@@ -25,7 +25,7 @@ class Table extends \Zend_Db_Table_Abstract {
         $row = $this->findByName( $name, $parent );
 
         if( ! empty( $row )) {
-            throw new \Admin\AdminException('Директория с таким именем уже существует' );
+            throw new \Admin\AdminException("Директория именем '{$name}' уже существует в '{$parent}'");
         }
 
         return $this->insert([
