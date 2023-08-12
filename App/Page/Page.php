@@ -415,7 +415,7 @@ class Page {
                 $path = $app->rootDir( 'Module', ucfirst( $mod ));
 
                 try {
-                    ModuleFactory::loadModule( $path );
+                    ModuleFactory::loadModule( $path, $app );
                     return true;
                 } catch( AppException $e ) {
                     // does not matter
