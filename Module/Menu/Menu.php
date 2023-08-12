@@ -7,7 +7,6 @@ use App\Module\ModuleInfo;
 use App\Module\NonInstallableModule;
 use Module\Menu\Frontend\MenuController;
 
-
 class Menu extends NonInstallableModule {
     /**
      * @return ModuleInfo
