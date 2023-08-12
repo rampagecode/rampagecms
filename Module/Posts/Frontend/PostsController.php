@@ -33,7 +33,7 @@ class PostsController extends ModuleFrontendController {
             ->join(
                 ['s' => 'site_tree'],
                 's.id = m.page_id',
-                ['pagetitle', 'alias']
+                ['pagetitle', 'alias', 'parent']
             )
             ->join(
                 ['t' => 'vfs_texts'],
@@ -47,7 +47,8 @@ class PostsController extends ModuleFrontendController {
 
         $listRows = [];
         foreach( $postRows as $row ) {
-            $postURL = '/blog/'.$row['alias'];
+            $parentPageURL = $this->app->pages->pageAddressById( $row['parent'] );            
+            $postURL = $parentPageURL.$row['alias'];
             $listRows[] = $view->postListRow( $row['pagetitle'], $row['text_formatted'], $postURL );
         }
 
