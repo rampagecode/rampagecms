@@ -34,9 +34,9 @@ class RequestManager {
                 $this->base_page_addr = '/admin/';
                 break;
 
-            case 'eng':
-                $this->base_url =  '/eng/';
-                $this->base_page_addr = '/eng/index/';
+            case 'en':
+                $this->base_url =  '/en/';
+                $this->base_page_addr = '/en/index/';
                 break;
 
             default:

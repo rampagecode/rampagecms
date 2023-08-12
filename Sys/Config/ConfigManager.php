@@ -33,6 +33,12 @@ class ConfigManager {
         $this->cache = new Cache( $this->vars['auth_group'], $cachePath, $db );
 
         $this->setVarsFromSettingsCache();
+
+        $this->vars['asset_url'] = $request->assetURL();
+        $this->vars['base_url'] = $request->baseURL();
+        $this->vars['page_url'] = $request->pageURL();
+        $this->vars['root_url'] = $request->rootURL();
+        $this->vars['base_page_addr'] = $request->basePageAddress();
 	}
 
     private function setVarsFromSettingsCache() {
