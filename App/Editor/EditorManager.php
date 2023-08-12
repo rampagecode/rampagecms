@@ -59,7 +59,7 @@ class EditorManager {
     function setHTML( $code = '' ) {
         // we will not check the cache because code is not cached so that you can still insert different code into a saved configuration.
         // standardise carriage returns, strip slashes increase sent from a form post or database.
-        $code = str_replace(array("\r\n", "\r"), array("\n", "\n"), stripslashes($code));
+        $code = str_replace(array("\r\n", "\r"), array("\n", "\n"), $code);
 
         // strip out the XML declaration because this can confuse Internet Explorer
         $code = preg_replace('/<\?php echo "<\?xml version=\"1\.0\" encoding=\"(.*?)\"\?"\.">"; \?>/smi',  "", $code);
